@@ -1,4 +1,11 @@
 # See link for details
+# https://docs.oracle.com/en-us/iaas/tools/oci-cli/3.10.5/oci_cli_docs/cmdref/lb/certificate/create.html
+
+private-key-file="/home/user/privkey.pem"
+public-certificate-file="/home/user/cert.pem"
+
+
+# See link for details
 # https://docs.oracle.com/en-us/iaas/tools/oci-cli/3.10.5/oci_cli_docs/cmdref/lb/listener/update.html#optional-parameters
 
 default-backend-set-name="bs_name"
