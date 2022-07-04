@@ -1,3 +1,7 @@
+# Use in output_log.sh
+LOGFILE="/var/log/oci_update_lb_ssl.log"
+
+
 # See link for details
 # https://docs.oracle.com/en-us/iaas/tools/oci-cli/3.10.5/oci_cli_docs/cmdref/lb/certificate/create.html
 
