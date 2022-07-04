@@ -7,10 +7,12 @@ cd $(dirname "$0")
 . oci_update_lb_ssl.conf
 . output_log.sh
 
-# Redirect stdout
+# Redirect stdout, stderr
+exec 1> /dev/null
 exec 2>> ${LOGFILE}
 
 # Check Certificates
+# Note: ls command is used to support even symbolic link
 ls ${private_key_file}
 if [ ${?} -ne 0 ]; then
     log "not fount ${private_key_file}"
@@ -22,7 +24,6 @@ if [ ${?} -ne 0 ]; then
     log "not fount ${public_certificate_file}"
     exit 1
 fi
-
 
 # Create OCI Certificates
 certificate_name="letsencrypt-$(date +"%Y%m%d")"
@@ -69,7 +70,7 @@ ${OCI_CLI} lb certificate delete \
     --load-balancer-id ${load_balancer_id} \
     --wait-for-state "SUCCEEDED" \
     --force \
-    --auth instance_principal \
+    --auth instance_principal
 
 if [ ${?} -e 0 ]; then
     log "SUCCEEDED Delete old Certificate (${old_certificate_name})"
