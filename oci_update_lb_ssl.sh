@@ -50,4 +50,16 @@ ${OCI_CLI} lb listener update \
     --force \
     --auth instance_principal
 
-    # TODO #1 Delete old Certificates
+# TODO #1 Delete old Certificate
+old_certificate_name=$(${OCI_CLI} lb certificate list \
+    --load-balancer-id ${load_balancer_id} \
+    --auth instance_principal \
+    | jq '.data[1]."certificate-name"'
+)
+
+${OCI_CLI} lb certificate delete \
+    --certificate-name ${old_certificate_name} \
+    --load-balancer-id ${load_balancer_id} \
+    --wait-for-state "SUCCEEDED" \
+    --force \
+    --auth instance_principal \
