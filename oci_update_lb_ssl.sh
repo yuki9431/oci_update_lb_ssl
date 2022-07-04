@@ -8,7 +8,7 @@ cd $(dirname "$0")
 . output_log.sh
 
 # Redirect stdout
-exec 2> ${LOGFILE}
+exec 2>> ${LOGFILE}
 
 # Check Certificates
 ls ${private_key_file}
