@@ -11,12 +11,14 @@ cd $(dirname "$0")
 exec 2> ${LOGFILE}
 
 # Check Certificates
-if [ -e ${private_key_file} ]; then
+ls ${private_key_file}
+if [ ${?} -ne 0 ]; then
   log "not fount ${private_key_file}"
   exit 1
 fi
 
-if [ -e ${public_certificate_file} ]; then
+ls ${public_certificate_file}
+if [ ${?} -ne 0 ]; then
   log "not fount ${public_certificate_file}"
   exit 1
 fi
