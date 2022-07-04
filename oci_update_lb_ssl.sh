@@ -57,7 +57,7 @@ if [ ${?} -e 0 ]; then
     log "SUCCEEDED Update OCI Load Balancer Listener (${listener_name})"
 fi
 
-# TODO #1 Delete old Certificate
+# Delete old Certificate
 old_certificate_name=$(${OCI_CLI} lb certificate list \
     --load-balancer-id ${load_balancer_id} \
     --auth instance_principal \
