@@ -61,7 +61,7 @@ fi
 old_certificate_name=$(${OCI_CLI} lb certificate list \
     --load-balancer-id ${load_balancer_id} \
     --auth instance_principal \
-    | jq '.data[1]."certificate-name"'
+    | jq -r '.data[1]."certificate-name"' \
 )
 
 ${OCI_CLI} lb certificate delete \
