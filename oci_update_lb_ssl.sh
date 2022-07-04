@@ -13,14 +13,14 @@ exec 2> ${LOGFILE}
 # Check Certificates
 ls ${private_key_file}
 if [ ${?} -ne 0 ]; then
-  log "not fount ${private_key_file}"
-  exit 1
+    log "not fount ${private_key_file}"
+    exit 1
 fi
 
 ls ${public_certificate_file}
 if [ ${?} -ne 0 ]; then
-  log "not fount ${public_certificate_file}"
-  exit 1
+    log "not fount ${public_certificate_file}"
+    exit 1
 fi
 
 
@@ -35,8 +35,11 @@ ${OCI_CLI} lb certificate create \
     --wait-for-state "SUCCEEDED" \
     --auth instance_principal
 
+if [ ${?} -e 0 ]; then
+    log "SUCCEEDED Create OCI Certificates (${certificate_name})"
+fi
 
-# Update OCI Load Balancer Listeners
+# Update OCI Load Balancer Listener
 ${OCI_CLI} lb listener update \
     --default-backend-set-name ${default_backend_set_name} \
     --listener-name ${listener_name} \
@@ -49,6 +52,10 @@ ${OCI_CLI} lb listener update \
     --cipher-suite-name 'oci-default-http2-ssl-cipher-suite-v1' \
     --force \
     --auth instance_principal
+
+if [ ${?} -e 0 ]; then
+    log "SUCCEEDED Update OCI Load Balancer Listener (${listener_name})"
+fi
 
 # TODO #1 Delete old Certificate
 old_certificate_name=$(${OCI_CLI} lb certificate list \
@@ -63,3 +70,7 @@ ${OCI_CLI} lb certificate delete \
     --wait-for-state "SUCCEEDED" \
     --force \
     --auth instance_principal \
+
+if [ ${?} -e 0 ]; then
+    log "SUCCEEDED Delete old Certificate (${old_certificate_name})"
+fi
