@@ -11,13 +11,13 @@ cd $(dirname "$0")
 exec 2> ${LOGFILE}
 
 # Check Certificates
-if [ -e ${private-key-file} ]; then
-  log "not fount ${private-key-file}"
+if [ -e ${private_key_file} ]; then
+  log "not fount ${private_key_file}"
   exit 1
 fi
 
-if [ -e ${public-certificate-file} ]; then
-  log "not fount ${public-certificate-file}"
+if [ -e ${public_certificate_file} ]; then
+  log "not fount ${public_certificate_file}"
   exit 1
 fi
 
@@ -27,21 +27,21 @@ certificate-name="letsencrypt-$(date +"%Y%m%d")"
 
 ${OCI_CLI} lb certificate create \
     --certificate-name ${certificate-name} \
-    --load-balancer-id ${load-balancer-id} \
-    --private-key-file ${private-key-file}
-    --public-certificate-file ${public-certificate-file}
+    --load_balancer_id ${load_balancer_id} \
+    --private_key_file ${private_key_file}
+    --public_certificate_file ${public_certificate_file}
     --wait-for-state "SUCCEEDED"
 
 
 # Update OCI Load Balancer Listeners
 ${OCI_CLI} lb listener update \
-    --default-backend-set-name ${default-backend-set-name} \
-    --listener-name ${listener-name} \
-    --load-balancer-id ${load-balancer-id}
+    --default_backend_set_name ${default_backend_set_name} \
+    --listener_name ${listener_name} \
+    --load_balancer_id ${load_balancer_id}
     --port ${port} \
     --protocol ${protocol} \
-    --routing-policy-name ${routing-policy-name} \
-    --ssl-certificate-name ${certificate-name} \
+    --routing_policy_name ${routing_policy_name} \
+    --ssl_certificate_name ${certificate-name} \
     --wait-for-state "SUCCEEDED"
     --force \
 

@@ -5,17 +5,17 @@ LOGFILE="/var/log/oci_update_lb_ssl.log"
 # See link for details
 # https://docs.oracle.com/en-us/iaas/tools/oci-cli/3.10.5/oci_cli_docs/cmdref/lb/certificate/create.html
 
-private-key-file="/home/user/privkey.pem"
-public-certificate-file="/home/user/cert.pem"
+private_key_file="/home/user/privkey.pem"
+public_certificate_file="/home/user/cert.pem"
 
 
 # See link for details
 # https://docs.oracle.com/en-us/iaas/tools/oci-cli/3.10.5/oci_cli_docs/cmdref/lb/listener/update.html#optional-parameters
 
-default-backend-set-name="bs_name"
-listener-name="listeners_name"
-load-balancer-id="ocid1.loadbalancer.oc1.region.aaaaaaa..." \
+default_backend_set_name="bs_name"
+listener_name="listeners_name"
+load_balancer_id="ocid1.loadbalancer.oc1.region.aaaaaaa..." \
 port="443"
 protocol="HTTP"
-routing-policy-name="routingpolicy_name"
-ssl-certificate-name="ssl-certificate-name"
+routing_policy_name="routingpolicy_name"
+ssl_certificate_name="ssl_certificate_name"
