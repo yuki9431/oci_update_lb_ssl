@@ -1,4 +1,4 @@
-#!/bin/bash -
+#!/bin/bash
 
 readonly PROCNAME=${0##*/}
 function log() {

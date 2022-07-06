@@ -36,7 +36,7 @@ ${OCI_CLI} lb certificate create \
     --wait-for-state "SUCCEEDED" \
     --auth instance_principal
 
-if [ ${?} -e 0 ]; then
+if [ ${?} -eq 0 ]; then
     log "SUCCEEDED Create OCI Certificates (${certificate_name})"
 fi
 
@@ -54,7 +54,7 @@ ${OCI_CLI} lb listener update \
     --force \
     --auth instance_principal
 
-if [ ${?} -e 0 ]; then
+if [ ${?} -eq 0 ]; then
     log "SUCCEEDED Update OCI Load Balancer Listener (${listener_name})"
 fi
 
@@ -62,7 +62,7 @@ fi
 old_certificate_name=$(${OCI_CLI} lb certificate list \
     --load-balancer-id ${load_balancer_id} \
     --auth instance_principal \
-    | jq -r '.data[1]."certificate-name"' \
+    | jq -r '.data[0]."certificate-name"' \
 )
 
 ${OCI_CLI} lb certificate delete \
@@ -72,6 +72,6 @@ ${OCI_CLI} lb certificate delete \
     --force \
     --auth instance_principal
 
-if [ ${?} -e 0 ]; then
+if [ ${?} -eq 0 ]; then
     log "SUCCEEDED Delete old Certificate (${old_certificate_name})"
 fi
