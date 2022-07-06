@@ -26,7 +26,7 @@ Then just run.
 # Example
 ```sh
 # Example use whith certbot
-certbot renew --dry-run && ./oci_update_lb_ssl.sh
+certbot renew --deploy-hook "/usr/local/bin/oci_update_lb_ssl/oci_update_lb_ssl.sh" &> /var/log/oci_update_lb_ssl.log
 
 ```
 
