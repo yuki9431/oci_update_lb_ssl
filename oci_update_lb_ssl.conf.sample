@@ -18,4 +18,3 @@ load_balancer_id="ocid1.loadbalancer.oc1.region.aaaaaaa..." \
 port="443"
 protocol="HTTP"
 routing_policy_name="routingpolicy_name"
-ssl_certificate_name="ssl_certificate_name"
