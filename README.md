@@ -7,6 +7,8 @@ You have OCI CLI installed on your server and setup INSTANCE PRINCIPALS.
 - [INSTANCE PRINCIPALS](https://docs.oracle.com/en-us/iaas/Content/Identity/Tasks/callingservicesfrominstances.htm)
 
 ## How to Use
+[ブログ](https://www.grimoire.tokyo/2022/07/11/post-408/)で詳しく説明してます。
+
 Please write oci_update_lb_ssl.conf.
 
 ```sh
